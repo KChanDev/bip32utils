@@ -1,3 +1,5 @@
+***Forked for master, but i add more types of key and fixed the issue when decode the ciphertext of b"\x00\xff"***
+
 Introduction
 ============
 
