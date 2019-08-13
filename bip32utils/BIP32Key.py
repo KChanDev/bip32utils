@@ -107,9 +107,7 @@ class BIP32Key(object):
         If public is True, return a public-only key regardless of input type.
         """
         # Sanity checks
-        raw = Base58.check_decode(xkey)
-        if len(raw) != 78:
-            raise ValueError("extended key format wrong length")
+        raw = Base58.check_decode(xkey, need_prefix = True)
 
         # Verify address version/type
         version = raw[:4]
