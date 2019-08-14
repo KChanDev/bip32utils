@@ -1,4 +1,4 @@
-***Forked for master, but i add more types of key and fixed the issue when decode the ciphertext of b"\x00\xff"***
+***I add more types of key and fixed two issues 1.`check_decode` will ignore leading `1` 2. `fromExtendedKey` parameter, xkey is not necessarily 78 bytes long***
 
 Introduction
 ============
