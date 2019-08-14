@@ -1,5 +1,23 @@
+## What did i do compare to `master branch`
 ***I add more types of key and fixed two issues 1.`check_decode` will ignore leading `1` 2. `fromExtendedKey` parameter, xkey is not necessarily 78 bytes long***
-
+## Notice
+```python
+def check_decode(enc, need_prefix = False):
+    "Decode bytes from Bitcoin base58 string and test checksum"
+    dec = decode(enc)
+    raw, chk = dec[:-4], dec[-4:]
+    if chk != sha256(sha256(raw).digest()).digest()[:4]:
+        raise ValueError("base58 decoding checksum error")
+    elif not need_prefix:
+        # strictly speaking we should return raw, but to reduce duplicate code i abandoned the first byte 
+        # Because the most used of `check_decode` is to decode a address. 
+        # And the first bytes of raw is version that we dont need almost.
+        return raw[1:] 
+    
+    # But sometime you will decode something else, i.e. *extendedkey*, etc.
+    # So set `need_prefix = True`
+    return raw
+```
 Introduction
 ============
 
